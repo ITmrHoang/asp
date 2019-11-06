@@ -1,0 +1,94 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<div class="row">
+    <div col-md->
+        <div class="col-md-4">
+            <div id="cmtlive">
+                <h1> Các bình luận:</h1>
+            </div>
+            @if (Context.Session.GetString("UserID") != null)
+            {
+                <div class="col-11">
+                    <form class="form-group row" >
+                        <h1>Viết Bình Luận</h1>
+                        <div class="col-md-12">
+                            <div class="col-sm-11">
+                                <input  id="ndCMT" name="ndCMT" class="form-control  col-10 col-md-offset-1" placeholder="Nội dung bình Luận... !" />
+                            </div>
+    
+                            <input type="hidden" id="username" name="UserName" value="@Context.Session.GetString("UserName")" />
+                        </div>
+                        <br />
+                        <input id="btncmtLive" type="submit" value="Bình Luận" class="btn btn-primary col-md-3 col-md-offset-8" />
+                    </form>
+                </div>
+            }
+            else
+            {
+                <div>
+                    <a href="/Login/" class="btn btn-warning btn-lg">Vui lòng đăng nhập để có thể bình luận</a>
+                </div>
+
+            }
+        </div>
+        <div class="col-md-8" style="width:300px; min-height:300px;">
+            <video id="video"></video>
+        </div>
+
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        window.addEventListener('DOMContentLoaded', function () {
+            'use strict';
+            var video = document.querySelector('video');
+
+            function successCallback(stream) {
+                // Set the source of the video element with the stream from the camera
+                if (video.mozSrcObject !== undefined) {
+                    video.mozSrcObject = stream;
+                } else {
+                    //video.srcObject = (window.URL && window.URL.createObjectURL(stream)) || stream;
+                    video.srcObject = stream;
+                }
+                video.play();
+            }
+
+            function errorCallback(error) {
+                console.error('An error occurred: [CODE ' + error.code + ']');
+                // Display a friendly "sorry" message to the user
+            }
+
+            navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+            window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+            // Call the getUserMedia method with our callback functions
+            if (navigator.getUserMedia) {
+                navigator.getUserMedia({ video: true }, successCallback, errorCallback);
+            } else {
+                console.log('Native web camera streaming (getUserMedia) not supported in this browser.');
+                // Display a friendly "sorry" message to the user
+            }
+        }, false);
+
+        $(document).on('click', '#btncmtLive', function (e) {
+            e.preventDefault();
+            var data = $("#ndCMT").val();
+            var username = $("#username").val();
+            if (data != "") {
+                console.log(data);
+                console.log(username);
+                 var html = '<p><span class="glyphicon glyphicon-user">' + username + ' : &nbsp;   </span>' + data + '</p>'
+                $("#cmtlive").append(html);
+                var data = $("#ndCMT").val("");
+            } else {
+                 console.log("k co nd");
+            }
+        });
+
+    </script>
+
+}
+
+
+

@@ -1,0 +1,115 @@
+﻿body {
+    height: 100%;
+    width: 100%;
+    font-size: 16px;
+    line-height: 1.4;
+}
+html{
+    height:100%;
+    width:100%;
+}
+h2{
+    color:red;
+}
+.container-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 190px calc(100% - 190px - 300px) 300px;
+    padding: 0;
+    margin-top: 50px;
+}
+    .container-grid .content {
+       text-align:center;
+    }
+    .container-grid .content .top-content {
+        position: absolute;
+        height: 50px;
+        width: 100%;
+        right: 0px;
+        background-color:#fff;
+    }
+    .container-grid .content .bot-content {
+        position: absolute;
+        top: 50px;
+        width: calc(100% - 150px);
+        bottom: 0;
+    }
+        .container-grid .content .post {
+            height: 200px;
+            width: 249px;
+            float: left;
+        }
+.navbar {
+    margin-bottom: 0 !important;
+    background-color: #fff;
+    border:none;
+}
+.side-bar a{
+    color:#000;
+}
+.side-bar {
+    background-color: azure;
+}
+/*post*/
+.detail-post {
+    padding: 0 200px;
+    font-family: Roboto,sans-serif;
+    height: 100%;
+}
+.postName {
+  
+    color: #8bad00 !important;
+    font-size: 36px;
+    font-weight: 900;
+}
+.title-post {
+    margin-top: 30px;
+    font-size: 20px;
+}
+.detail-nav {
+    text-align: center;
+    padding: 14px 14px 14px 60px;
+    cursor: pointer;
+}
+    .detail-nav:nth-child(2 ) {
+        background-image: url('../images/40 vintage flat food and drink icons-02.png');
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-position: 35px 13px;
+        /*background: url('../images/download.png')2px 2px no-repeat;*/
+    }
+    .detail-nav:nth-child(3) {
+        background-image: url('../images/40 vintage flat food and drink icons-06.png');
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-position: 35px 13px;
+        /*background: url('../images/download.png')2px 2px no-repeat;*/
+    }
+    .detail-nav:nth-child(4) {
+        background-image: url('../images/40 vintage flat food and drink icons-10.png');
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-position: 35px 13px;
+        /*background: url('../images/download.png')2px 2px no-repeat;*/
+    }
+    .detail-nav:nth-child(5) {
+        background-image: url('../images/40 vintage flat food and drink icons-04.png');
+        background-repeat: no-repeat;
+        background-size: 20px;
+        background-position: 35px 13px;
+        /*background: url('../images/download.png')2px 2px no-repeat;*/
+    }
+.detail-nav:hover {
+    background-color: cadetblue;
+}
+.clicked {
+    background-color: cadetblue !important;
+}
+.fix-title {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    font-size: 25px;
+    font-weight: bold;
+}

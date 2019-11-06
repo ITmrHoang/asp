@@ -1,0 +1,63 @@
+﻿@model NauAn.Models.Entities.User
+@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi tiết người dùng @Model.UserName</h2>
+
+<h4>User</h4>
+<hr />
+<div class="row col-md-10 col-md-offset-1">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" readonly />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Birthday" class="control-label"></label>
+                <input asp-for="Birthday" class="form-control" />
+                <span asp-validation-for="Birthday" class="text-danger"></span>
+            </div>
+            @if (Context.Session.GetString("Role") == "admin")
+            {
+                <div class="form-group">
+                    <label asp-for="Role" class="control-label"></label>
+                    <input asp-for="Role" class="form-control" />
+                    <span asp-validation-for="Role" class="text-danger"></span>
+                </div>
+            }else
+            { 
+               <input type="hidden" asp-for="Role" class="form-control" />
+            }
+
+        <div class="form-group">
+            <label asp-for="Gender" class="control-label"></label>
+            <select asp-for="Gender" class ="form-control">
+                <option value="1">Nam</option>
+                <option value="2">Nữ</option>
+                <option value="3">Giới tính khác</option>
+            </select>
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+            <div class="form-group">
+                <input type="submit" value="Lưu" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-success" asp-controller="Posts" asp-action="Index"> <span class="glyphicon glyphicon-arrow-left"></span>   Quay về trang chủ</a>
+</div>
+

@@ -1,0 +1,88 @@
+﻿@model NauAn.Models.Entities.Post
+@using Microsoft.AspNetCore.Http
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header{
+
+    <link href="~/css/reset.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/NA.css" rel="stylesheet" />
+    <link href="~/css/edit.css" rel="stylesheet" />
+}
+<div class="edit-post">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="PostName" class="control-label"></label>
+                    <input asp-for="PostName" class="form-control" />
+                    <span asp-validation-for="PostName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <textarea asp-for="Content" class="form-control"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                @*<div class="form-group">
+                        <label asp-for="Rating" class="control-label"></label>
+                        <input asp-for="Rating" class="form-control" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
+                    </div>*@
+                <div class="form-group">
+                    <label asp-for="Image" class="control-label"></label>
+                    <input asp-for="Image" type="file" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Video" class="control-label"></label>
+                    <input asp-for="Video" type="file" onchange="openFile(event)" class="form-control" accept="video/mp4" />
+                    <span asp-validation-for="Video" class="text-danger"></span>
+                </div>
+                <div class="form-group hidden">
+                    <label asp-for="UserID" class="control-label"></label>
+                    <input asp-for="UserID" value="@Context.Session.GetString("UserID")" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="CategoryID" class="control-label"></label>
+                    <select asp-for="CategoryID" class="form-control" asp-items="ViewBag.CategoryID"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+    <div>
+        <a asp-action="Index"> <span class="glyphicon glyphicon-arrow-left"></span>   Quay về trang chủ</a>
+    </div>
+</div>
+
+@section footer{
+    <script src="~/js/NA.js"></script>
+    <script src="~/js/main.js"></script>
+
+    @*}
+        @section scrip{
+            <script>
+                var openFile = function (event) {
+                    debugger
+                    var file = event.target.file[0];
+                    var videoPlayer = document.getElementById('videoPlay');
+                    var url = URL.createObjectURL(file);
+                    videoPlayer.setAttribute('src', url);
+                }
+            </script>*@
+
+}
+

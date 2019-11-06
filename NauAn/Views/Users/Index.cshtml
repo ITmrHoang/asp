@@ -1,0 +1,59 @@
+﻿@model IEnumerable<NauAn.Models.Entities.User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý User</h2>
+<p>
+    <a asp-action="Create"> Thêm tạo người dùng mới</a>
+</p>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birthday)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Gender)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birthday)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                 <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.ID"><span class="glyphicon glyphicon-pencil"></span>Sửa</a> |
+                <a class="btn btn-success" asp-action="Details" asp-route-id="@item.ID"><span class="glyphicon glyphicon-eye-open"></span>Chi tiết</a> |
+                <a  class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ID"><span class="glyphicon glyphicon-remove-circle"></span>Xóa</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

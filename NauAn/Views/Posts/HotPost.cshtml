@@ -1,0 +1,22 @@
+﻿@model List<NauAn.Models.Entities.Post>
+@*@section header{
+
+}*@
+<div class="title-hot">
+   Những Món Ăn Nổi Bật
+</div>
+    <ul >
+        @foreach (var item in Model)
+        {
+            <li style="margin-top:15px">
+                <a asp-action="Details" asp-route-id="@item.ID">
+                    <img src="@Url.Content("~/images/" + @item.Image)" alt="" title="" class="property_img" />
+                </a>
+                <div class="property_details">
+                    <h1>
+                        <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Title)</a>
+                    </h1>
+                </div>
+            </li>
+        }
+    </ul>

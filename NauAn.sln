@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NauAn", "NauAn\NauAn.csproj", "{18FA9DA0-943F-4BC4-9697-43C24888A106}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18FA9DA0-943F-4BC4-9697-43C24888A106}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18FA9DA0-943F-4BC4-9697-43C24888A106}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18FA9DA0-943F-4BC4-9697-43C24888A106}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18FA9DA0-943F-4BC4-9697-43C24888A106}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {01855123-1315-4B10-B79A-14D0CEE229E9}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://dev.azure.com/cntlazyo
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = NauAn\\NauAn.csproj
+		SccProjectName1 = NauAn
+		SccLocalPath1 = NauAn
+	EndGlobalSection
+EndGlobal

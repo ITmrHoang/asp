@@ -1,0 +1,195 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Hướng Dẫn Nấu Ăn Online</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+    </environment>
+    <style>
+        .navbar-brand {
+            padding: 0px; /* firefox bug fix */
+        }
+
+            .navbar-brand > img {
+                height: 100%;
+                padding: 2px; /* firefox bug fix */
+                width: auto;
+            }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 100%;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .btn-user {
+            background-color: #1C2833;
+            color: white;
+        }
+
+        /* Links inside the dropdown */
+        .dropdown-menu a {
+            color: black;
+            padding: 10px 10px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        #btnUser {
+            min-width: 100px;
+        }
+
+        .dropdown:hover .dropbtn {
+            background-color: #E5E8E8;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    @RenderSection(name: "header", required: false)
+    <link href="~/css/hot.css" rel="stylesheet" />
+ 
+</head>
+<body id="top">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">
+                        <img class="img-responsive" src="~/icon/logo-web.jpg" alt="Hướng Dẫn Nấu Ăn Online" />
+                    </a>
+                </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a asp-area="" asp-controller="Posts" asp-action="Index">Trang chủ</a></li>
+                    <li><a asp-area="" asp-controller="Home" asp-action="Abouts">Thông tin về chúng tôi</a></li>
+                    @*<li><a asp-area="" asp-controller="Home" asp-action="Contacts">Contact</a></li>*@
+                    <li><a asp-area="" asp-controller="Home" asp-action="LiveStream">Live</a></li>
+                    @if (Context.Session.GetString("Role") == "admin")
+                    {
+                        <li><a asp-area="" asp-controller="Users" asp-action="Index">Quản Lý User</a></li>
+
+                    }
+                </ul>
+                @*@Context.Session.GetString("UserName")*@
+                @if (Context.Session.GetString("UserID") != null)
+                {
+                    <div class="navbar-right">
+                        <div class="dropdown">
+                            <input type="hidden" id="UserID" value="@Context.Session.GetString("UserID")" />
+                            <button type="button" id="btnUser" style="margin-top:8px" class="btn btn-user dropdown-toggle dropbtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Hello!  @Context.Session.GetString("UserName") <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/users/Edit/@Context.Session.GetString("UserID")">Cập Nhập</a>
+                                <a class="dropdown-item" href="/users/Details/@Context.Session.GetString("UserID")">Thông tin</a>
+                                <div class="dropdown-divider"></div>
+                                @*<a class="dropdown-item" href="/Logout">Đăng Xuất</a>*@
+                                <a class="dropdown-item" asp-controller="Home" asp-action="logout">Đăng Xuất</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                else
+                {
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a asp-controller="Home" asp-action="Register"><span class="glyphicon glyphicon-user"></span> Đăng Ký</a></li>
+                        <li><a asp-controller="Home" asp-action="Login"><span class="glyphicon glyphicon-log-in"></span> Đăng Nhập</a></li>
+                    </ul>
+                }
+            </div>
+        </div>
+    </nav>
+    <div id=" test">
+        <partial name="_CookieConsentPartial" />
+    </div>
+
+    <div class="container-grid body-content">
+        <div class="side-bar" id="side-bar">
+            <div style="height: 50px; border-bottom: 1px solid #e6d4d4;padding: 8px; text-align: center;font-weight: bold; font-size: 25px; color: yellowgreen;">Danh Mục</div>
+
+        </div>
+        <div class="content">
+            <section class="search">
+                <div class="wrapper">
+                    <form action="" method="get">
+                        <input type="text" id="search" name="search" placeholder="Nhập từ khóa cần tìm" autocomplete="off" />
+                        @*<input type="submit" id="submit_search" name="submit_search" />*@
+                        <button class="btnSearch" id="btnSearch" style="height: 50px;width: 90px;background: cadetblue;border-radius: 10px;font-size: 25px;font-weight: bold;position: absolute;right: 0;">TÌM</button>
+                    </form>
+                    <a href="#" class="advanced_search_icon" id="advanced_search_btn"></a>
+                </div>
+                <div class="advanced_search">
+                    <div class="wrapper">
+                        <span class="arrow"></span>
+                        
+                    </div>
+                </div><!--  end advanced search section  -->
+                <div class="btn-create-post"><a asp-controller="Posts" asp-action="Create">Thêm mới </a></div>
+            </section><!--  end search section  -->
+
+            @RenderBody()
+        </div>
+        <div class="hot-post" id="milestonesContainer">
+
+            @*@await Component.InvokeAsync(nameof(PostHot), new { maxPriority = 4, isDone = true })*@
+        </div>
+    </div>
+    <script src="~/js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    @RenderSection(name: "footer", required: false)
+    @*@RenderSection(name: "scrip", required: false)*@
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+
+ 
+</body>
+</html>

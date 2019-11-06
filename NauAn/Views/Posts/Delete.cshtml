@@ -1,0 +1,73 @@
+﻿@model NauAn.Models.Entities.Post
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header{
+
+    <link href="~/css/reset.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/NA.css" rel="stylesheet" />
+    <link href="~/css/edit.css" rel="stylesheet" />
+}
+<h3>Bạn thực sự muốn xóa bài viết không?</h3>
+<div>
+    <hr />
+    @*<dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PostName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PostName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Content)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.User)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.User.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Category)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Category.ID)
+        </dd>
+    </dl>*@
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ID" />
+        <input type="submit" value="Đồng ý" class="btn btn-default" /> |
+        <a asp-action="Index"> <span class="glyphicon glyphicon-arrow-left"></span>   Quay về trang chủ</a>
+    </form>
+</div>
+@section footer{
+    <script src="~/js/NA.js"></script>
+    <script src="~/js/main.js"></script>
+
+}

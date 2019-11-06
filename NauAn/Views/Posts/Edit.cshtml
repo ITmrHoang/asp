@@ -1,0 +1,88 @@
+﻿@model NauAn.Models.Entities.Post
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header{
+    <link href="~/css/reset.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/NA.css" rel="stylesheet" />
+    <link href="~/css/edit.css" rel="stylesheet" />
+ <script>
+    var loadFile = function(event) {
+    var output = document.getElementById('showiamge');
+    output.src = URL.createObjectURL(event.target.files[0]);
+    $('#showiamge').show();
+  };
+
+ </script>
+}
+<div class="edit-post">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Edit" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="ID" />
+                <div class="form-group">
+                    <label asp-for="PostName" class="control-label"></label>
+                    <input asp-for="PostName" class="form-control" />
+                    <span asp-validation-for="PostName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Content" class="control-label"></label>
+                    <textarea asp-for="Content" class="form-control"></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+                <input asp-for="Rating" class="form-control" style="border:none;box-shadow:none;color:#fff; position: absolute;right: -500px;height: 0px;width: 0px;" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+
+                <div class="form-group">
+
+                    <label asp-for="Image" class="control-label"></label>
+                    <input type="hidden" asp-for="Image" class="form-control" />
+                    <input asp-for="Image" onchange="loadFile(event)" type="file" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="form-group"> <img class="form-control" id="showiamge" alt="your avatar upload" style="max-width:100px; min-height:100px;"  /> </div>
+                <div class="form-group">
+                    <label asp-for="Video" class="control-label"></label>
+                    <input type="hidden" asp-for="Video" class="form-control" />
+                    <input asp-for="Video" type="file" onchange="openFile(event)" class="form-control" accept="video/mp4" />
+                    <span asp-validation-for="Video" class="text-danger"></span>
+                </div>
+                <div class="form-group hidden">
+                    <label asp-for="UserID" class="control-label"></label>
+                    <input asp-for="UserID" class="form-control">
+                    <span asp-validation-for="UserID" class="text-danger"></span>
+                </div>
+                <div class="form-group hidden">
+                    <label asp-for="CategoryID" class="control-label"></label>
+                    <input asp-for="CategoryID" class="form-control">
+                    <span asp-validation-for="CategoryID" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index"> <span class="glyphicon glyphicon-arrow-left"></span>   Quay về trang chủ</a>
+    </div>
+</div>
+
+@section footer{
+    <script src="~/js/NA.js"></script>
+    <script src="~/js/main.js"></script>
+}
+
+
+

@@ -1,0 +1,11 @@
+﻿.edit-post {
+    padding: 0 100px;
+    margin-top: 50px;
+}
+.form-group {
+    color: cornflowerblue;
+    text-align: left;
+}
+.btn-default {
+    background-color: aqua;
+}

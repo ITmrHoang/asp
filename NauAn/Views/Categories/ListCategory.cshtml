@@ -1,0 +1,7 @@
+﻿@model IEnumerable<NauAn.Models.Entities.Category>
+@section nav{
+    @foreach (var item in Model)
+    {
+        @Html.DisplayFor(modelItem => item.Name)
+    }
+}

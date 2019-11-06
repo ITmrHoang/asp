@@ -1,0 +1,68 @@
+﻿@model IEnumerable<NauAn.Models.Entities.Post>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section header{
+
+    <link href="~/css/reset.css" rel="stylesheet" />
+    <link href="~/css/responsive.css" rel="stylesheet" />
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/css/NA.css" rel="stylesheet" />
+}
+
+
+<section class="listings">
+    <div class="wrapper" style="padding:0 30px;">
+        <ul class="properties_list row">
+            @foreach (var item in Model)
+            {
+                <li class="col-lg-4">
+                    <a asp-action="Details" asp-route-id="@item.ID">
+                        @*<img class="img-responsive" src="@Url.Content("~/images/" + @item.Image)" alt="" style="width:100px; height:100px">*@
+                        <img src="@Url.Content("~/images/" + @item.Image)" alt="" title="" class="property_img" style="height:326px !important" />
+                    </a>
+                    @*<span class="price">$1000</span>*@
+                    <div class="property_details">
+                        <div>
+                            <div class="fix-title">
+                                <a asp-action="Details" asp-route-id="@item.ID"> @Html.DisplayFor(modelItem => item.Title)</a>
+                            </div>
+                            @*<a asp-action="Details" asp-route-id="@item.ID" style="color: brown;">Xem chi tiết</a>*@
+                            @*<a asp-action="Delete" asp-route-id="@item.ID">Delete</a>*@
+                        </div>
+
+                        <h2> <span class="glyphicon glyphicon-eye-open"> @Html.DisplayFor(modelItem => item.Rating) </span></h2>
+                    </div>
+                </li>
+            }
+        </ul>
+        <div class="more_listing">
+            <a href="#" class="more_listing_btn">View More Listings</a>
+        </div>
+    </div>
+</section>	<!--  end listing section  -->
+@*<div id="milestonesContainer"></div>*@
+<hr />
+<div class="footer-lower">
+    <div class="media-container-row">
+        <div class="col-sm-12">
+            <hr>
+        </div>
+    </div>
+    <div class="media-container-row mbr-white">
+        <div class="col-sm-6 col-md-offset-1 copyright">
+            <p class="mbr-text mbr-fonts-style display-7">
+                © Copyright 2019 <a href="fb.com/mrh2510">ITmr.H</a>
+            </p>
+        </div>
+
+
+    </div>
+</div>
+@section footer{
+    <script src="~/js/NA.js"></script>
+    <script src="~/js/main.js"></script>
+
+}

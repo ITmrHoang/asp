@@ -1,0 +1,65 @@
+﻿@model NauAn.Models.Entities.User
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Thông tin tài Khoản</h2>
+
+<div>
+    <h4>@Model.UserName</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName) :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Password) :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Password)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday) :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Role) :
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Role)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        @if (Model.Gender == 1)
+        {
+            <dd>
+                Nam
+            </dd>
+        }
+        @if (Model.Gender == 2)
+        {
+            <dd>
+                Nữ
+            </dd>
+        }
+        @if (Model.Gender == 3)
+        {
+            <dd>
+                Giới tính khác
+            </dd>
+        }
+    </dl>
+</div>
+<div>
+    <a class="btn btn-success" asp-action="Edit" asp-route-id="@Model.ID">Sửa</a> |
+   <a  class="btn btn-primary" asp-controller="Posts" asp-action="Index"> <span class="glyphicon glyphicon-arrow-left"></span> Quay về trang chủ</a>
+</div>
